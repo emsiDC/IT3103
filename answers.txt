@@ -1,0 +1,284 @@
+2.2.5
+import java.util.Scanner;
+
+public class TinhToanHaiSo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhap vao so thu nhat: ");
+        double soThuNhat = scanner.nextDouble();
+
+        System.out.print("Nhap vao so thu hai: ");
+        double soThuHai = scanner.nextDouble();
+
+        double tong = soThuNhat + soThuHai;
+        double hieu = soThuNhat - soThuHai;
+        double tich = soThuNhat * soThuHai;
+        double thuong = 0;
+
+        if (soThuHai != 0) {
+            thuong = soThuNhat / soThuHai;
+        } else {
+            System.out.println("Khong the chia cho 0!");
+        }
+
+        System.out.println("Tong cua hai so: " + tong);
+        System.out.println("Hieu cua hai so: " + hieu);
+        System.out.println("Tich cua hai so: " + tich);
+
+        if (soThuHai != 0) {
+            System.out.println("Thuong cua hai so: " + thuong);
+        }
+
+        scanner.close();
+    }
+}
+
+2.2.6
+import java.util.Scanner;
+
+public class PhuongTrinhBacNhatMotBien {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhap he so a: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Nhap he so b: ");
+        double b = scanner.nextDouble();
+
+        if (a == 0) {
+            if (b == 0) {
+                System.out.println("Phuong trinh co vo so nghiem.");
+            } else {
+                System.out.println("Phuong trinh vo nghiem.");
+            }
+        } else {
+            double nghiem = -b / a;
+            System.out.println("Phuong trinh co nghiem x = " + nghiem);
+        }
+
+        scanner.close();
+    }
+}
+
+6.1
+-What happens if users choose “Cancel”?
+Trong đoạn mã được hiển thị, phương thức JOptionPane.showConfirmDialog sẽ trả về một giá trị tương ứng với lựa chọn của người dùng. Nếu người dùng chọn "Cancel", hộp thoại này sẽ trả về giá trị JOptionPane.CANCEL_OPTION. Tuy nhiên, trong phần hiện tại của mã, chương trình không xử lý lựa chọn "Cancel" cụ thể, vì vậy nó sẽ tiếp tục như thể không có lựa chọn nào khác ngoài "Yes" hoặc "No". Kết quả sẽ chỉ hiển thị lựa chọn "Yes" hoặc "No", và không có phản hồi khi chọn "Cancel".
+-How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help).
+Bạn có thể tùy chỉnh các lựa chọn bằng cách truyền một tập hợp các tùy chọn của riêng bạn vào phương thức showConfirmDialog. Dưới đây là ví dụ về cách chỉnh sửa mã để sử dụng các lựa chọn tùy chỉnh:
+import javax.swing.JOptionPane;
+public class ChoosingOption {
+    public static void main(String[] args) {
+        Object[] options = {"Tôi đồng ý", "Tôi không đồng ý"};
+        int option = JOptionPane.showOptionDialog(null,
+            "Bạn có muốn tiếp tục không?",
+            "Hộp thoại tùy chọn",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]);
+        JOptionPane.showMessageDialog(null, "Bạn đã chọn: " 
+            + (option == JOptionPane.YES_OPTION ? "Tôi đồng ý" : "Tôi không đồng ý"));
+        System.exit(0);
+    }
+}
+Trong ví dụ này:
+•	Hộp thoại bây giờ sẽ hiển thị các lựa chọn là "Tôi đồng ý" và "Tôi không đồng ý" thay vì "Yes" và "No" thông thường.
+•	Phương thức JOptionPane.showOptionDialog được sử dụng để tùy chỉnh các nhãn nút bấm.
+
+6.2
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Nhap ten cua ban: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Nhap tuoi cua ban: ");
+        int age = scanner.nextInt();
+        
+        System.out.println("Ten cua ban la: " + name);
+        System.out.println("Tuoi cua ban la: " + age);
+        
+        scanner.close();
+    }
+}
+
+6.3
+import java.util.Scanner;
+public class TriangleStars {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}
+
+6.4
+import java.util.Scanner;
+public class DaysInMonth {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Nhap vao thang (1-12): ");
+        int month = scanner.nextInt();
+        
+        System.out.print("Nhap vao nam: ");
+        int year = scanner.nextInt();
+        
+        if (month < 1 || month > 12) {
+            System.out.println("Thang khong hop le. Vui long nhap thang tu 1 den 12.");
+        } else {
+            int days = getDaysInMonth(month, year);
+            System.out.println("So ngay trong thang " + month + " cua nam " + year + " la: " + days);
+        }
+
+        scanner.close();
+    }
+
+    public static int getDaysInMonth(int month, int year) {
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                return 31;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            case 2:
+                return isLeapYear(year) ? 29 : 28;
+            default:
+                return 0;
+        }
+    }
+
+    public static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+}
+
+
+6.5 
+import java.util.Scanner;
+
+public class ArraySortAndAverage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Nhap so luong phan tu trong mang: ");
+        int n = scanner.nextInt();
+        
+        int[] array = new int[n];
+        
+        System.out.println("Nhap cac phan tu trong mang:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+        
+        bubbleSort(array);
+        
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        
+        double average = (double) sum / n;
+        
+        System.out.println("Mang sau khi sap xep:");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        
+        System.out.println("Tong cac phan tu: " + sum);
+        System.out.println("Gia tri trung binh: " + average);
+        
+        scanner.close();
+    }
+
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+6.6
+import java.util.Scanner;
+
+public class MatrixAddition {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Nhap so hang: ");
+        int rows = scanner.nextInt();
+        System.out.print("Nhap so cot: ");
+        int cols = scanner.nextInt();
+        
+        int[][] matrixA = new int[rows][cols];
+        int[][] matrixB = new int[rows][cols];
+        int[][] sumMatrix = new int[rows][cols];
+        
+        System.out.println("Nhap cac phan tu cho ma tran A:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrixA[i][j] = scanner.nextInt();
+            }
+        }
+        
+        System.out.println("Nhap cac phan tu cho ma tran B:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrixB[i][j] = scanner.nextInt();
+            }
+        }
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                sumMatrix[i][j] = matrixA[i][j] + matrixB[i][j];
+            }
+        }
+        
+        System.out.println("Ma tran tong A + B:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(sumMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        
+        scanner.close();
+    }
+}
+
+ 
+
